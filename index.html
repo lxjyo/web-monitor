@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      new Promise((resove, reject) => {
+        reject(new Error('eee'))
+      })
+
+      async function test() {
+        await Promise.reject('ssss')
+      }
+
+      async function test2() {
+        throw new Error('test2')
+        await 3
+      }
+
+      test();
+
+      test2();
+
+      window.addEventListener(
+        'unhandledrejection',
+        function (e) {
+          console.log('unhandledrejection', e.promise);
+          e.preventDefault();
+        },
+        false
+      );
+    </script>
+    <script src="./src/error/index.js" type="module"></script>
+    <!-- <script src="./dodsfasf.js"></script> -->
+  </body>
+</html>
